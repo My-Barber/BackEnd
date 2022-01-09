@@ -45,9 +45,15 @@ namespace Mybarber.Repositories
             try
             {
 
-                IQueryable<Barbearias> query = _context.Barbearias.Include(p => p.Barbeiros).Include(p => p.Servicos).Include(p => p.ServicosBarbeiros); 
+                IQueryable<Barbearias> query = _context.Barbearias.Include(p => p.Barbeiros)
+                    .Include(p => p.Servicos).ThenInclude(it => it.ServicoImagem)
+                    .Include(it => it.Servicos).ThenInclude(it => it.ServicosBarbeiros).ThenInclude(it => it.Barbeiros)
+                .Include(it => it.Agendamentos).ThenInclude(it => it.Servicos)
+                .Include(it => it.Agendamentos).ThenInclude(it => it.Barbeiros);
+
 
                 query = query.AsNoTracking()
+                    
                     .OrderBy(barbearias => barbearias.IdBarbearia)
                     .Where(barbearias => barbearias.IdBarbearia == idBarbearia);
 

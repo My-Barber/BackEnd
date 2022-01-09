@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\Documents\\git\\Minha barbearia Versão Docker\\BackEnd\\Mybarber-API\\Mybarber\\Mybarber.csproj": {}
+    "C:\\Users\\User\\source\\repos\\Mybarber-API\\Mybarber\\Mybarber.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\Documents\\git\\Minha barbearia Versão Docker\\BackEnd\\Mybarber-API\\Mybarber\\Mybarber.csproj": {
+    "C:\\Users\\User\\source\\repos\\Mybarber-API\\Mybarber\\Mybarber.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\Documents\\git\\Minha barbearia Versão Docker\\BackEnd\\Mybarber-API\\Mybarber\\Mybarber.csproj",
+        "projectUniqueName": "C:\\Users\\User\\source\\repos\\Mybarber-API\\Mybarber\\Mybarber.csproj",
         "projectName": "Mybarber",
-        "projectPath": "C:\\Users\\User\\Documents\\git\\Minha barbearia Versão Docker\\BackEnd\\Mybarber-API\\Mybarber\\Mybarber.csproj",
+        "projectPath": "C:\\Users\\User\\source\\repos\\Mybarber-API\\Mybarber\\Mybarber.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\Documents\\git\\Minha barbearia Versão Docker\\BackEnd\\Mybarber-API\\Mybarber\\obj\\",
+        "outputPath": "C:\\Users\\User\\source\\repos\\Mybarber-API\\Mybarber\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

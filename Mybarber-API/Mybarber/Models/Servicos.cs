@@ -8,18 +8,21 @@ namespace Mybarber.Models
     public class Servicos
     {
 
-
+       
         [Key()]
         public int IdServico{ get; set; }
 
-        //[Required(ErrorMessage = "O nome deve ser informado")]
+        [Required(ErrorMessage = "O nome deve ser informado")]
         public string NomeServico { get; set; }
 
-        //[Required(ErrorMessage = "O tempo deve ser informado")]
+        [Required(ErrorMessage = "O tempo deve ser informado")]
         public DateTime TempoServico { get; set; } 
 
-        //[Required(ErrorMessage = "O preço deve ser informado")]
+        [Required(ErrorMessage = "O preço deve ser informado")]
         public float PrecoServico { get; set; }
+        [ForeignKey("ServicoImagemId")]
+        public int ServicoImagemId { get; set; }
+        public virtual ServicoImagem ServicoImagem { get; set; } 
 
         public virtual ICollection<ServicosBarbeiros> ServicosBarbeiros { get; set; }
 
@@ -30,7 +33,7 @@ namespace Mybarber.Models
 
         public Servicos() 
         {
-
+            
             ServicosBarbeiros = new HashSet<ServicosBarbeiros>();
         }
 

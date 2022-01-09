@@ -57,7 +57,7 @@ namespace Mybarber.Controllers
             {
                 var result = await _presenter.PostAgendamentoAsync(agendamentoDto);
 
-                return Created($"/api/v1/candidates/{result.IdAgendamento}", result);
+                return Created($"/api/v1/agendamentos/{result.IdAgendamento}", result);
             }
             catch (Exception ex)
             {

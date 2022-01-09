@@ -1,14 +1,17 @@
 ﻿using Mybarber.DataTransferObject.Barbeiro;
 using Mybarber.DataTransferObject.Servico;
+using Mybarber.Models;
 
 namespace Mybarber.Abstracts.Relacionamento
 {
     public class AbstractServicosBarbeirosResponseDto
     {
 
-        public int ServicosId { get; set; }
+      
 
-        public int BarbeirosId { get; set; }
+   
+
+        public virtual BarbeirosResponseDto Barbeiros { get; set; }
 
         
 

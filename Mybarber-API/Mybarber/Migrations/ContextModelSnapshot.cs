@@ -102,6 +102,24 @@ namespace Mybarber.Migrations
                     b.ToTable("Barbeiros");
                 });
 
+            modelBuilder.Entity("Mybarber.Models.ServicoImagem", b =>
+                {
+                    b.Property<int>("IdImagemServico")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<string>("URL")
+                        .HasColumnType("text");
+
+                    b.HasKey("IdImagemServico");
+
+                    b.ToTable("ServicoImagens");
+                });
+
             modelBuilder.Entity("Mybarber.Models.Servicos", b =>
                 {
                     b.Property<int>("IdServico")
@@ -113,10 +131,14 @@ namespace Mybarber.Migrations
                         .HasColumnType("integer");
 
                     b.Property<string>("NomeServico")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<float>("PrecoServico")
                         .HasColumnType("real");
+
+                    b.Property<int>("ServicoImagemId")
+                        .HasColumnType("integer");
 
                     b.Property<DateTime>("TempoServico")
                         .HasColumnType("timestamp without time zone");
@@ -124,6 +146,8 @@ namespace Mybarber.Migrations
                     b.HasKey("IdServico");
 
                     b.HasIndex("BarbeariasId");
+
+                    b.HasIndex("ServicoImagemId");
 
                     b.ToTable("Servicos");
                 });
@@ -183,6 +207,12 @@ namespace Mybarber.Migrations
                     b.HasOne("Mybarber.Models.Barbearias", "Barbearias")
                         .WithMany("Servicos")
                         .HasForeignKey("BarbeariasId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Mybarber.Models.ServicoImagem", "ServicoImagem")
+                        .WithMany("Servicos")
+                        .HasForeignKey("ServicoImagemId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

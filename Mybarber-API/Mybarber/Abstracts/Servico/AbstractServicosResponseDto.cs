@@ -1,4 +1,5 @@
-﻿using Mybarber.DataTransferObject.Relacionamento;
+﻿using Mybarber.DataTransferObject.Images;
+using Mybarber.DataTransferObject.Relacionamento;
 using Mybarber.Models;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,9 @@ namespace Mybarber.Abstracts.Servico
         public string NomeServico { get; set; }
         public DateTime TempoServico { get; set; }
         public float PrecoServico { get; set; }
+        public virtual ServicoImagemResponseDto ServicoImagem { get; set; }
+
+        public virtual ICollection<ServicosBarbeirosResponseDto> ServicosBarbeiros { get; set; }
         
      
     }

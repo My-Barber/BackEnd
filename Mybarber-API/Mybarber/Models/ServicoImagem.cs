@@ -1,6 +1,23 @@
-﻿namespace Mybarber.Models
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+
+namespace Mybarber.Models
 {
     public class ServicoImagem
     {
+        [Key()]
+        public int IdImagemServico { get; set; }
+
+        public string Name { get; set; }
+
+        public string URL { get; set; }
+
+        public virtual ICollection<Servicos> Servicos { get; set; }
+
+        public ServicoImagem() { }
+
+
+
+
     }
 }

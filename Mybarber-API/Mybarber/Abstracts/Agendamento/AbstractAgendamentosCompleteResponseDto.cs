@@ -12,7 +12,7 @@ namespace Mybarber.Abstracts.Agendamento
         public DateTime Horario { get; set; }
         public int ServicosId { get; set; }
         public int BarbeirosId { get; set; }
-        public int BarbeariaId { get; set; }
+        public int BarbeariasId { get; set; }
 
     }
 }

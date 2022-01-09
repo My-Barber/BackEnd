@@ -12,5 +12,6 @@ namespace Mybarber.Abstracts.Servico
         public float PrecoServico { get; set; }
         public int BarbeariasId { get; set; }
         public List<ServicosBarbeiros> ServicosBarbeiros { get; set; }
+        public int ServicoImagemId { get; set; }
     }
 }

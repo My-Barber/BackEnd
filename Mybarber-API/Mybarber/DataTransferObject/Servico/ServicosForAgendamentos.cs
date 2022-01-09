@@ -2,10 +2,7 @@
 
 namespace Mybarber.DataTransferObject.Servico
 {
-    public class ServicosResponseDto : AbstractServicosResponseDto
+    public class ServicosForAgendamentos : AbstractServicosForAgendamentos
     {
-
-
-
     }
 }

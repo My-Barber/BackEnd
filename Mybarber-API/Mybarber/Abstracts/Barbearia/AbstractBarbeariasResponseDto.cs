@@ -1,5 +1,7 @@
 ﻿using Mybarber.Abstracts.Barbeiro;
 using Mybarber.Abstracts.Servico;
+using Mybarber.DataTransferObject.Agendamento;
+using Mybarber.DataTransferObject.Barbearia;
 using Mybarber.DataTransferObject.Barbeiro;
 using Mybarber.DataTransferObject.Relacionamento;
 using Mybarber.DataTransferObject.Servico;
@@ -12,10 +14,12 @@ namespace Mybarber.Abstracts
     {
         public int IdBarbearia { get; set; }
         public string NomeBarbearia { get; set; }
-        public ICollection<ServicosResponseDto> Servicos { get; set; }
+        public virtual ICollection<ServicosResponseDto> Servicos { get; set; }
 
-        public ICollection<BarbeirosResponseDto> Barbeiros { get; set; }
-        public virtual ICollection<ServicosBarbeirosResponseDto> ServicosBarbeiros { get; set; }
+        public virtual ICollection<BarbeirosResponseDto> Barbeiros { get; set; }
+
+        public virtual ICollection<AgendamentosResponseDto> Agendamentos { get; set; }
+     
 
 
 

@@ -67,10 +67,15 @@ namespace Mybarber
             services.AddScoped<IGenerallyRepository, GenerallyRepository>();
             services.AddScoped<IRelacionamentosPresenter, RelacionamentosPresenter>();
 
+            services.AddScoped<IServicoImagemServices, ServicoImagemServices>();
+
+            services.AddScoped<IServicoImagemPresenter, ServicoImagemPresenter>();
+
+
 
         }
 
-    
+
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())

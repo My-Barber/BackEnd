@@ -65,7 +65,7 @@ namespace Mybarber.Controllers
             {
                 var result = await _presenter.PostBarbeariaAsync(barbeariaDto);
 
-                return Created($"/api/v1/candidates/{result.IdBarbearia}", result);
+                return Created($"/api/v1/Barbearias/{result.IdBarbearia}", result);
             }
             catch (Exception ex)
             {

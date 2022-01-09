@@ -5554,11 +5554,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\Documents\\git\\Minha barbearia Versão Docker\\BackEnd\\Mybarber-API\\Mybarber_Test\\Mybarber_Test.csproj",
+      "projectUniqueName": "C:\\Users\\User\\source\\repos\\Mybarber-API\\Mybarber_Test\\Mybarber_Test.csproj",
       "projectName": "Mybarber_Test",
-      "projectPath": "C:\\Users\\User\\Documents\\git\\Minha barbearia Versão Docker\\BackEnd\\Mybarber-API\\Mybarber_Test\\Mybarber_Test.csproj",
+      "projectPath": "C:\\Users\\User\\source\\repos\\Mybarber-API\\Mybarber_Test\\Mybarber_Test.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\User\\Documents\\git\\Minha barbearia Versão Docker\\BackEnd\\Mybarber-API\\Mybarber_Test\\obj\\",
+      "outputPath": "C:\\Users\\User\\source\\repos\\Mybarber-API\\Mybarber_Test\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -5579,8 +5579,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\User\\Documents\\git\\Minha barbearia Versão Docker\\BackEnd\\Mybarber-API\\Mybarber\\Mybarber.csproj": {
-              "projectPath": "C:\\Users\\User\\Documents\\git\\Minha barbearia Versão Docker\\BackEnd\\Mybarber-API\\Mybarber\\Mybarber.csproj"
+            "C:\\Users\\User\\source\\repos\\Mybarber-API\\Mybarber\\Mybarber.csproj": {
+              "projectPath": "C:\\Users\\User\\source\\repos\\Mybarber-API\\Mybarber\\Mybarber.csproj"
             }
           }
         }

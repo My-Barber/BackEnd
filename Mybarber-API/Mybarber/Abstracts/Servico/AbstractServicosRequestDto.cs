@@ -10,5 +10,7 @@ namespace Mybarber.Abstracts.Servico
         public DateTime TempoServico { get; set; }
         public float PrecoServico { get; set; }
         public int BarbeariasId { get; set; }
+
+        public int ServicoImagemId { get; set; }
     }
 }

@@ -14,8 +14,8 @@ namespace Mybarber.Persistencia
         public DbSet<Barbeiros> Barbeiros { get; set; }
         public DbSet<Agendamentos> Agendamentos { get; set; }
         public DbSet<Servicos> Servicos { get; set; }
-
         public DbSet<ServicosBarbeiros> ServicosBarbeiros { get; set; }
+        public DbSet<ServicoImagem> ServicoImagens { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

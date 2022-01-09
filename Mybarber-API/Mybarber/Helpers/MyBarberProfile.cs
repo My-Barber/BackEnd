@@ -2,6 +2,7 @@
 using Mybarber.DataTransferObject.Agendamento;
 using Mybarber.DataTransferObject.Barbearia;
 using Mybarber.DataTransferObject.Barbeiro;
+using Mybarber.DataTransferObject.Images;
 using Mybarber.DataTransferObject.Relacionamento;
 using Mybarber.DataTransferObject.Servico;
 using Mybarber.Models;
@@ -26,6 +27,10 @@ namespace Mybarber.Helpers
             CreateMap<Agendamentos, AgendamentosResponseDto>();
             CreateMap<ServicosBarbeiros, ServicosBarbeirosRequestDto>().ReverseMap();
             CreateMap<ServicosBarbeiros, ServicosBarbeirosResponseDto>();
+            CreateMap<ServicoImagem, ServicoImagemResponseDto>();
+            CreateMap<ServicoImagem, ServicoImagemRequestDto>().ReverseMap();
+            CreateMap<Servicos, ServicosForAgendamentos>();
+
 
         }
     }

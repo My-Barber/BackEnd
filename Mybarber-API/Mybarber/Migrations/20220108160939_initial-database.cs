@@ -23,6 +23,20 @@ namespace Mybarber.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ServicoImagens",
+                columns: table => new
+                {
+                    IdImagemServico = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(nullable: true),
+                    URL = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ServicoImagens", x => x.IdImagemServico);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Barbeiros",
                 columns: table => new
                 {
@@ -48,9 +62,10 @@ namespace Mybarber.Migrations
                 {
                     IdServico = table.Column<int>(nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    NomeServico = table.Column<string>(nullable: true),
+                    NomeServico = table.Column<string>(nullable: false),
                     TempoServico = table.Column<DateTime>(nullable: false),
                     PrecoServico = table.Column<float>(nullable: false),
+                    ServicoImagemId = table.Column<int>(nullable: false),
                     BarbeariasId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -61,6 +76,12 @@ namespace Mybarber.Migrations
                         column: x => x.BarbeariasId,
                         principalTable: "Barbearias",
                         principalColumn: "IdBarbearia",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Servicos_ServicoImagens_ServicoImagemId",
+                        column: x => x.ServicoImagemId,
+                        principalTable: "ServicoImagens",
+                        principalColumn: "IdImagemServico",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -158,6 +179,11 @@ namespace Mybarber.Migrations
                 column: "BarbeariasId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Servicos_ServicoImagemId",
+                table: "Servicos",
+                column: "ServicoImagemId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ServicosBarbeiros_BarbeariasId",
                 table: "ServicosBarbeiros",
                 column: "BarbeariasId");
@@ -184,6 +210,9 @@ namespace Mybarber.Migrations
 
             migrationBuilder.DropTable(
                 name: "Barbearias");
+
+            migrationBuilder.DropTable(
+                name: "ServicoImagens");
         }
     }
 }
