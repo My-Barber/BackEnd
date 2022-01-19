@@ -46,7 +46,7 @@ namespace Mybarber.Repositories
 
             query = query.AsNoTracking()
                 .OrderBy(barbeiros => barbeiros.IdBarbeiro)
-                .Where(candidates => candidates.BarbeariasForeignKey == idBarbearia);
+                .Where(candidates => candidates.BarbeariasId == idBarbearia);
 
             return await query.ToArrayAsync();
         }

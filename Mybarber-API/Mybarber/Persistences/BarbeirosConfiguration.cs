@@ -10,7 +10,7 @@ namespace Mybarber.Persistences
         {
             builder.HasOne(p => p.Barbearias)
          .WithMany(b => b.Barbeiros)
-         .HasForeignKey(p => p.BarbeariasForeignKey);
+         .HasForeignKey(p => p.BarbeariasId);
         }
     }
 }

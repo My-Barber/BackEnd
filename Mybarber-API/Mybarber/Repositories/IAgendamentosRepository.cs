@@ -1,4 +1,5 @@
-﻿using Mybarber.Models;
+﻿using Mybarber.Helpers;
+using Mybarber.Models;
 using System.Threading.Tasks;
 
 namespace Mybarber.Repository
@@ -9,5 +10,6 @@ namespace Mybarber.Repository
         //AGENDAMENTO
         Task<Agendamentos[]> GetAllAgendamentosAsync();
         Task<Agendamentos> GetAgendamentosAsyncById(int idAgendamento);
+        Task<PageList<Agendamentos>> GetAgendamentosAsyncByTenant(int tenant, PageParams pageParams);
     }
 }

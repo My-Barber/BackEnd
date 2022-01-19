@@ -17,10 +17,18 @@ namespace Mybarber.Models
 
 
         [ForeignKey("Barbearias")]
-        public int BarbeariasForeignKey { get; set; }
+        public int BarbeariasId { get; set; }
         public virtual Barbearias Barbearias { get; set; }
 
+        [ForeignKey("BarbeiroImagemId")]
+        public int BarbeiroImagemId { get; set; }
+        public virtual BarbeiroImagens BarbeiroImagem { get; set; }
+
         
+        public virtual Agendas Agendas { get; set; }
+
+        
+
 
         public Barbeiros()
         {

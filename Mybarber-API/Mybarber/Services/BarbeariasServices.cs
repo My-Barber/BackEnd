@@ -1,9 +1,14 @@
-﻿using Mybarber.Models;
+﻿using Mybarber.Exceptions;
+using Mybarber.Exceptions.Tradutor;
+using Mybarber.Models;
 
 using Mybarber.Repository;
+using Mybarber.Validations;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using static Mybarber.Exceptions.BusinessException;
+using static Mybarber.Exceptions.ViewException;
 
 namespace Mybarber.Services
 {
@@ -38,7 +43,11 @@ namespace Mybarber.Services
         {
             try 
             {
+
+
                 var barbearia = await _repo.GetBarbeariasAsyncById(idBarbearia);
+
+                
 
                 return barbearia;
 
@@ -52,7 +61,11 @@ namespace Mybarber.Services
         {
             try
             {
-                _generally.Add(barbearias);
+                if(ValidaCNPJ.IsCnpj(barbearias.CNPJ) == false)
+                    throw new CNPJException(TraslateExceptions.CNPJInválido);
+
+
+               _generally.Add(barbearias);
 
                 if (await _generally.SaveChangesAsync())
                 {
@@ -61,12 +74,39 @@ namespace Mybarber.Services
                 }
                 else
                 {
+                    throw new DbException(TraslateExceptions.NotSaved);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new ViewException("Operation.Failed", ex.Message);
+            }
+        }
+        public async Task<string> DeleteBarbeariaAsyncById(int idBarbearia)
+        {
+            try
+            {
+                var barbeariaFinded = await _repo.GetBarbeariasAsyncById(idBarbearia);
+
+                if (barbeariaFinded == null) { throw new Exception(); }
+
+
+                _generally.Delete(barbeariaFinded);
+
+                if (await _generally.SaveChangesAsync())
+                {
+
+                    return "Barbearia Deletado Com sucesso.";
+                }
+                else
+                {
                     throw new InvalidOperationException("Operação falhou");
                 }
             }
-            catch (Exception )
+            catch (Exception ex)
             {
-                throw new Exception();
+                throw ex;
+
             }
         }
     }

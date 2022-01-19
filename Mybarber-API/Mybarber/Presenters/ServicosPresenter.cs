@@ -68,5 +68,24 @@ namespace Mybarber.Presenter
                 throw new Exception();
             }
         }
+
+        public async Task<string> DeleteServicoAsyncById(int idServico)
+        {
+            try
+            {
+                var service = await _service.DeleteServicoAsyncById(idServico);
+
+                return "Servico Deletado com sucesso.";
+            }
+
+
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+
+        }
     }
 }

@@ -45,9 +45,10 @@ namespace Mybarber.Repositories
             try
             {
 
-                IQueryable<Barbearias> query = _context.Barbearias.Include(p => p.Barbeiros)
+                IQueryable<Barbearias> query = _context.Barbearias.Include(p => p.Barbeiros).ThenInclude(it => it.BarbeiroImagem)
                     .Include(p => p.Servicos).ThenInclude(it => it.ServicoImagem)
-                    .Include(it => it.Servicos).ThenInclude(it => it.ServicosBarbeiros).ThenInclude(it => it.Barbeiros)
+                    .Include(it => it.Servicos).ThenInclude(it => it.ServicosBarbeiros).ThenInclude(it => it.Barbeiros).ThenInclude(it => it.BarbeiroImagem)
+                    .Include(it => it.Servicos).ThenInclude(it => it.ServicosBarbeiros).ThenInclude(it => it.Barbeiros).ThenInclude(it => it.Agendas)
                 .Include(it => it.Agendamentos).ThenInclude(it => it.Servicos)
                 .Include(it => it.Agendamentos).ThenInclude(it => it.Barbeiros);
 

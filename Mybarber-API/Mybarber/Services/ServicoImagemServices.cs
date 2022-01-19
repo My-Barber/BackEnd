@@ -15,7 +15,7 @@ namespace Mybarber.Services
             this._generally = generally;
         }
 
-        public async Task<ServicoImagem> PostServicoImagemAsync(ServicoImagem imagem)
+        public async Task<ServicoImagens> PostServicoImagemAsync(ServicoImagens imagem)
         {
             try
             {

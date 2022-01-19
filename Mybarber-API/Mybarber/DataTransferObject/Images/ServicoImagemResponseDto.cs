@@ -1,8 +1,11 @@
-﻿using Mybarber.Abstracts.images;
+﻿
 
 namespace Mybarber.DataTransferObject.Images
 {
-    public class ServicoImagemResponseDto : AbstractServicoImagemResponseDto
+    public class ServicoImagemResponseDto 
     {
+        public int IdImagemServico { get; set; }
+
+        public string URL { get; set; }
     }
 }

@@ -2,8 +2,10 @@
 using Mybarber.DataTransferObject.Barbearia;
 using Mybarber.DataTransferObject.Barbeiro;
 using Mybarber.DataTransferObject.Servico;
+using Mybarber.Exceptions;
 using Mybarber.Models;
 using Mybarber.Services;
+using Mybarber.Validations;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -13,12 +15,12 @@ namespace Mybarber.Presenter
     public class BarbeariasPresenter : IBarbeariasPresenter
     {
         private readonly IMapper _mapper;
-        private readonly IBarbeariasServices _serviceBarbearia;
+        private readonly IBarbeariasServices _service;
      
         public BarbeariasPresenter(IBarbeariasServices serviceBarbearia , IMapper mapper
      )
         {
-            this._serviceBarbearia = serviceBarbearia;
+            this._service = serviceBarbearia;
             this._mapper = mapper;
      
 
@@ -43,7 +45,7 @@ namespace Mybarber.Presenter
         {
             try
             {
-                var barbearia = await _serviceBarbearia.GetBarbeariaAsyncById(idBarbearia);
+                var barbearia = await _service.GetBarbeariaAsyncById(idBarbearia);
 
                 var barbeariaDto =  _mapper.Map<BarbeariasResponseDto>(barbearia);
                
@@ -59,21 +61,57 @@ namespace Mybarber.Presenter
         {
             try
             {
+                if(barbeariaDto == null)
+                {
+                    throw new ViewException("barbearia.Missing.Info");
+                }
+
+                if(barbeariaDto.CNPJ == null)
+                {
+                    throw new ViewException("CNPJ.Missing.Info");
+                }
+                if (barbeariaDto.NomeBarbearia == null)
+                {
+                    throw new ViewException("Name.Barbearia.Missing.Info");
+                }
+
                 var barbearia = _mapper.Map<Barbearias>(barbeariaDto);
 
-                await _serviceBarbearia.PostBarbeariaAsync(barbearia);
+                await _service.PostBarbeariaAsync(barbearia);
 
-                var b = await _serviceBarbearia.GetBarbeariaAsyncById(barbearia.IdBarbearia);
-
+                var b = await _service.GetBarbeariaAsyncById(barbearia.IdBarbearia);
+                if(b == null)
+                {
+                    throw new ViewException("Operation.Failed");
+                }
 
 
                 return _mapper.Map<BarbeariasCompleteResponseDto>(b);
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw new Exception();
+                throw new ViewException("Operation.Failed", ex.Message);
             }
+        }
+
+        public async Task<string> DeleteBarbeariaAsyncById(int idBarbearia)
+        {
+            try
+            {
+                var barbearia = await _service.DeleteBarbeariaAsyncById(idBarbearia);
+
+                return "Barbearia Deletada com sucesso.";
+            }
+
+
+
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Mybarber.Repositories
 {
-    public class RelacionamentoRepository
+    public class RelacionamentoRepository : IRelacionamentoRepository
     {
         private readonly Context _context;
 

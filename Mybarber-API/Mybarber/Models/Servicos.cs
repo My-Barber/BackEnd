@@ -22,7 +22,7 @@ namespace Mybarber.Models
         public float PrecoServico { get; set; }
         [ForeignKey("ServicoImagemId")]
         public int ServicoImagemId { get; set; }
-        public virtual ServicoImagem ServicoImagem { get; set; } 
+        public virtual ServicoImagens ServicoImagem { get; set; } 
 
         public virtual ICollection<ServicosBarbeiros> ServicosBarbeiros { get; set; }
 

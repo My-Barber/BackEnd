@@ -89,5 +89,32 @@ namespace Mybarber.Services
                 throw new Exception();
             }
         }
+        public async Task<string> DeleteBarbeiroAsyncById(int idBarbeiro)
+        {
+            try
+            {
+                var barbeiroFinded = await _repo.GetBarbeirosAsyncById(idBarbeiro);
+
+                if (barbeiroFinded == null) { throw new Exception(); }
+
+
+                _generally.Delete(barbeiroFinded);
+
+                if (await _generally.SaveChangesAsync())
+                {
+
+                    return "Barbeiro Deletado Com sucesso.";
+                }
+                else
+                {
+                    throw new InvalidOperationException("Operação falhou");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
+            }
+        }
     }
 }

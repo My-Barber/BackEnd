@@ -1,8 +1,13 @@
-﻿using Mybarber.Abstracts;
+﻿
 
 namespace Mybarber.DataTransferObject.Barbearia
 {
-    public class BarbeariasCompleteResponseDto : AbstractBarbeariasCompleteResponseDto
+    public class BarbeariasCompleteResponseDto
     {
+        public int IdBarbearia { get; set; }
+
+        public string NomeBarbearia { get; set; }
+
+        public string CNPJ { get; set; }
     }
 }

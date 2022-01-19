@@ -26,7 +26,7 @@ namespace Mybarber.Presenters
         {
             try
             {
-                var imagem = _mapper.Map<ServicoImagem>(imagemDto);
+                var imagem = _mapper.Map<ServicoImagens>(imagemDto);
 
                 await _service.PostServicoImagemAsync(imagem);
 

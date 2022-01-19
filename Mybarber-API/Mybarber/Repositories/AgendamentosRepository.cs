@@ -1,7 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿
+using Microsoft.EntityFrameworkCore;
+using Mybarber.Helpers;
 using Mybarber.Models;
 using Mybarber.Persistencia;
 using Mybarber.Repository;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -38,5 +41,42 @@ namespace Mybarber.Repositories
 
             return await query.ToArrayAsync();
         }
+          public async Task<PageList<Agendamentos>> GetAgendamentosAsyncByTenant(int tenant, PageParams pageParams )
+        {
+            IQueryable<Agendamentos> query = _context.Agendamentos.Include(it => it.Servicos).Include(it=>it.Barbeiros);
+
+            query = query.AsNoTracking()
+                         .OrderBy(agendamentos => agendamentos.IdAgendamento)
+                         .Where(it => it.BarbeariasId == tenant );
+
+
+            if (!string.IsNullOrEmpty(pageParams.NomeBarbeiro))
+                query = query.Where(agendamento => agendamento.Barbeiros.NameBarbeiro.ToUpper().Equals(pageParams.NomeBarbeiro.ToUpper()));
+
+            if (!string.IsNullOrEmpty(pageParams.NomeServico))
+                query = query.Where(agendamento => agendamento.Servicos.NomeServico.ToUpper().Equals(pageParams.NomeServico.ToUpper()));
+
+            if ((pageParams.Date.Day.Equals(DateTime.Now.Day)) && (pageParams.Date.Month.Equals(DateTime.Now.Month)) && (pageParams.Date.Year.Equals(DateTime.Now.Year)))
+                query = query.Where
+                (agendamento => (agendamento.Horario.Day.Equals(pageParams.Date.Day) && agendamento.Horario.Month.Equals(pageParams.Date.Month)
+                && agendamento.Horario.Year.Equals(pageParams.Date.Year))
+                || (agendamento.Horario.Day.Equals(pageParams.Date.AddDays(1).Day) && agendamento.Horario.Month.Equals(pageParams.Date.Month)
+                && agendamento.Horario.Year.Equals(pageParams.Date.Year))
+                || (agendamento.Horario.Day.Equals(pageParams.Date.AddDays(2).Day) && agendamento.Horario.Month.Equals(pageParams.Date.Month)
+                && agendamento.Horario.Year.Equals(pageParams.Date.Year)));
+                    
+               
+          
+
+            if (!pageParams.Date.Day.Equals(DateTime.Now.Day))
+                query = query.Where(agendamentos => agendamentos.Horario.Day.Equals(pageParams.Date.Day) 
+                && agendamentos.Horario.Month.Equals(pageParams.Date.Month) && agendamentos.Horario.Year.Equals(pageParams.Date.Year));
+
+
+                // return await query.ToArrayAsync();
+
+                return await PageList<Agendamentos>.CreateAsync(query, pageParams.PageNumber, pageParams.PageSize);
+        }
+
     }
 }

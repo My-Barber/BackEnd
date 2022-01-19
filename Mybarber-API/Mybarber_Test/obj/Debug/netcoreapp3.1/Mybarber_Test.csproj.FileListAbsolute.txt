@@ -128,3 +128,15 @@ C:\Users\User\source\repos\Mybarber-API\Mybarber_Test\obj\Debug\netcoreapp3.1\My
 C:\Users\User\source\repos\Mybarber-API\Mybarber_Test\obj\Debug\netcoreapp3.1\Mybarber_Test.dll
 C:\Users\User\source\repos\Mybarber-API\Mybarber_Test\obj\Debug\netcoreapp3.1\Mybarber_Test.pdb
 C:\Users\User\source\repos\Mybarber-API\Mybarber_Test\obj\Debug\netcoreapp3.1\Mybarber_Test.genruntimeconfig.cache
+C:\Users\User\source\repos\Mybarber-API\Mybarber_Test\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\User\source\repos\Mybarber-API\Mybarber_Test\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\User\source\repos\Mybarber-API\Mybarber_Test\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+C:\Users\User\source\repos\Mybarber-API\Mybarber_Test\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
+C:\Users\User\source\repos\Mybarber-API\Mybarber_Test\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\User\source\repos\Mybarber-API\Mybarber_Test\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+C:\Users\User\source\repos\Mybarber-API\Mybarber_Test\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
+C:\Users\User\source\repos\Mybarber-API\Mybarber_Test\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\User\source\repos\Mybarber-API\Mybarber_Test\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\User\source\repos\Mybarber-API\Mybarber_Test\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\User\source\repos\Mybarber-API\Mybarber_Test\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\User\source\repos\Mybarber-API\Mybarber_Test\bin\Debug\netcoreapp3.1\Mybarber.xml

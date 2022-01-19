@@ -25,6 +25,8 @@ namespace Mybarber.Models
 
         public virtual ICollection<ServicosBarbeiros> ServicosBarbeiros { get; set; }
 
+        public virtual ICollection<Users> Users { get; set; }
+
         public Barbearias() { }
 
 
