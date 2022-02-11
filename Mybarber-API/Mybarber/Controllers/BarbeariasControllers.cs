@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Cors;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using Mybarber.Config;
 using Mybarber.DataTransferObject.Barbearia;
 using Mybarber.Presenter;
 using Mybarber.Repository;
@@ -53,22 +55,18 @@ namespace Mybarber.Controllers
         /// <param name="idBarbearia"></param>
         /// <returns></returns>
         [HttpGet("{idBarbearia:int}")]
+        
         public async Task<IActionResult> GetBarbeariaAsyncById(int idBarbearia)
         
         {
-            try
-            {
+            
                 var result = await _presenter.GetAllAtributesBarbeariaAsyncById(idBarbearia);
                
 
                 return  Ok(result);
 
-            }
-            catch (Exception ex)
-            {
-
-                return BadRequest($"Erro:{ex.Message}");
-            }
+            
+         
 
         }
         /// <summary>
@@ -77,36 +75,26 @@ namespace Mybarber.Controllers
         /// <param name="barbeariaDto"></param>
         /// <returns></returns>
         [HttpPost]
+        
         public async Task<IActionResult> PostBarbeariaAsync(BarbeariasRequestDto barbeariaDto)
         {
-            try
-            {
+            
                 var result = await _presenter.PostBarbeariaAsync(barbeariaDto);
 
                 return Created($"/api/v1/Barbearias/{result.IdBarbearia}", result);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest($"Erro:{ex.Message}");
-            }
+            
         }
 
         [HttpDelete("{idBarbearia:int}")]
         public async Task<IActionResult> DeleteBarbeariaAsyncById(int idBarbearia)
         {
 
-            try
-            {
+          
                 var result = await _presenter.DeleteBarbeariaAsyncById(idBarbearia);
 
                 return Ok(result);
 
-            }
-            catch (Exception ex)
-            {
-
-                return BadRequest(ex.Message);
-            }
+        
 
         }
     }

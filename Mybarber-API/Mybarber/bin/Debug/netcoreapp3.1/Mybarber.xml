@@ -9,7 +9,7 @@
             
             </summary>
         </member>
-        <member name="M:Mybarber.Controllers.AgendamentosControllers.#ctor(Mybarber.Presenter.IAgendamentosPresenter,Mybarber.Repository.IAgendamentosRepository)">
+        <member name="M:Mybarber.Controllers.AgendamentosControllers.#ctor(Mybarber.Presenter.IAgendamentosPresenter,Mybarber.Repository.IAgendamentosRepository,Microsoft.Extensions.Caching.Memory.IMemoryCache)">
             <summary>
             
             </summary>
@@ -115,18 +115,18 @@
             <param name="imagemDto"></param>
             <returns></returns>
         </member>
-        <member name="T:Mybarber.Controllers.ServicosBarbeirosController">
+        <member name="T:Mybarber.Controllers.ServicosBarbeirosControllers">
             <summary>
             
             </summary>
         </member>
-        <member name="M:Mybarber.Controllers.ServicosBarbeirosController.#ctor(Mybarber.Presenters.IRelacionamentosPresenter)">
+        <member name="M:Mybarber.Controllers.ServicosBarbeirosControllers.#ctor(Mybarber.Presenters.IServicosBarbeirosPresenter)">
             <summary>
             
             </summary>
             <param name="presenter"></param>
         </member>
-        <member name="M:Mybarber.Controllers.ServicosBarbeirosController.PostRelacionamentoAsync(Mybarber.DataTransferObject.Relacionamento.ServicosBarbeirosRequestDto)">
+        <member name="M:Mybarber.Controllers.ServicosBarbeirosControllers.PostRelacionamentoAsync(Mybarber.DataTransferObject.Relacionamento.ServicosBarbeirosRequestDto)">
             <summary>
             
             </summary>

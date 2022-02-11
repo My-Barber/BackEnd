@@ -16,6 +16,19 @@
 
         public virtual Barbearias Barbearias { get; set; }
 
+        public ServicosBarbeiros(int servicosId, int barbeirosId, int barbeariasId)
+
+        {
+            this.ServicosId = servicosId;
+            this.BarbeirosId = barbeirosId;
+            this.BarbeariasId = barbeariasId;
+                
+        }
+        public ServicosBarbeiros()
+        {
+
+        }
+
 
 
 

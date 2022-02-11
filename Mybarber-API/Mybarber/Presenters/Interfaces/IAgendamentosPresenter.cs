@@ -11,5 +11,7 @@ namespace Mybarber.Presenter
         Task<AgendamentosResponseDto> GetAgendamentoAsyncById(int idAgendamento);
 
         Task<AgendamentosCompleteResponseDto> PostAgendamentoAsync(AgendamentosRequestDto agendamentoDto);
+
+        Task<bool> DeleteAgendamentoAsyncById(int idAgendamento);
     }
 }

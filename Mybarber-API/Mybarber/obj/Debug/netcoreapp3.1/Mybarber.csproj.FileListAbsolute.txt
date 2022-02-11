@@ -56,3 +56,17 @@ C:\Users\User\source\repos\Mybarber-API\Mybarber\bin\Debug\netcoreapp3.1\Microso
 C:\Users\User\source\repos\Mybarber-API\Mybarber\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\User\source\repos\Mybarber-API\Mybarber\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
 C:\Users\User\source\repos\Mybarber-API\Mybarber\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\User\source\repos\Mybarber-API\Mybarber\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\User\source\repos\Mybarber-API\Mybarber\bin\Debug\netcoreapp3.1\Mybarber.StaticWebAssets.xml
+C:\Users\User\source\repos\Mybarber-API\Mybarber\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.UI.Views.V3.dll
+C:\Users\User\source\repos\Mybarber-API\Mybarber\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.UI.Views.V4.dll
+C:\Users\User\source\repos\Mybarber-API\Mybarber\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.UI.dll
+C:\Users\User\source\repos\Mybarber-API\Mybarber\obj\Debug\netcoreapp3.1\staticwebassets\Mybarber.StaticWebAssets.xml
+C:\Users\User\source\repos\Mybarber-API\Mybarber\obj\Debug\netcoreapp3.1\Mybarber.RazorComponent.input.cache
+C:\Users\User\source\repos\Mybarber-API\Mybarber\obj\Debug\netcoreapp3.1\Mybarber.RazorComponent.output.cache
+C:\Users\User\source\repos\Mybarber-API\Mybarber\obj\Debug\netcoreapp3.1\RazorDeclaration\Mybarber.dll
+C:\Users\User\source\repos\Mybarber-API\Mybarber\obj\Debug\netcoreapp3.1\Mybarber.TagHelpers.input.cache
+C:\Users\User\source\repos\Mybarber-API\Mybarber\obj\Debug\netcoreapp3.1\Mybarber.TagHelpers.output.cache
+C:\Users\User\source\repos\Mybarber-API\Mybarber\obj\Debug\netcoreapp3.1\Mybarber.RazorCoreGenerate.cache
+C:\Users\User\source\repos\Mybarber-API\Mybarber\obj\Debug\netcoreapp3.1\RazorDeclaration\EmailTemplate.razor.g.cs
+C:\Users\User\source\repos\Mybarber-API\Mybarber\obj\Debug\netcoreapp3.1\Razor\EmailTemplate.razor.g.cs

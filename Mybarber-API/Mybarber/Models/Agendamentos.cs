@@ -10,10 +10,11 @@ namespace Mybarber.Models
         [Key]
         public int IdAgendamento { get; set; }
 
-        [Required(ErrorMessage = "O nome deve ser informado"), MaxLength(80, ErrorMessage = "Nome não pode exceder 80 caracteres")]
+        [Required(ErrorMessage = "O nome deve ser informado"), MaxLength(80, ErrorMessage = "Nome não pode exceder 80 caracteres"), MinLength(3, ErrorMessage = "Nome deve conter 3 ou mais caracteres")]
         public string Name { get; set; }
 
         [Required(ErrorMessage = "O E-mail deve ser informado")]
+        [EmailAddress(ErrorMessage = "E-mail inválido")]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Um contato deve ser informado")]

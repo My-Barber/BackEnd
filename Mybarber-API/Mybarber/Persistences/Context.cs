@@ -1,10 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Mybarber.Models;
 using Mybarber.Persistences;
 
 namespace Mybarber.Persistencia
 {
-    public class Context : DbContext
+    public class Context : IdentityDbContext
     {
 
         public Context(DbContextOptions<Context> options) : base(options) { }
@@ -18,6 +19,10 @@ namespace Mybarber.Persistencia
         public DbSet<ServicoImagens> ServicoImagens { get; set; }
         public DbSet<Agendas> Agendas { get; set;}
         public DbSet<Users> Users { get; set; }
+        public DbSet<Roles> Roles { get; set; }
+        public DbSet<UsersRoles> UsersRoles { get; set; }
+
+        public DbSet<HTML> HTML { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -26,11 +31,12 @@ namespace Mybarber.Persistencia
 
             modelBuilder.ApplyConfiguration(new ServicosBarbeirosConfiguration());
             modelBuilder.ApplyConfiguration(new BarbeirosConfiguration());
+            modelBuilder.ApplyConfiguration(new UsersRolesConfiguration());
 
 
 
 
-          
+
         }
 
 

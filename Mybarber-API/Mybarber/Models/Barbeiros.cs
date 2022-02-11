@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Mybarber.Models
 {
-    public class Barbeiros
+    public class Barbeiros 
     {
 
         [Key()]
@@ -15,6 +15,8 @@ namespace Mybarber.Models
        
         public virtual ICollection<ServicosBarbeiros> ServicosBarbeiros { get; set; }
 
+
+        public string Email { get; set; }
 
         [ForeignKey("Barbearias")]
         public int BarbeariasId { get; set; }

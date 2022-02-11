@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Mybarber.DataTransferObject.Agendamento;
+using Mybarber.Exceptions;
 using Mybarber.Models;
 using Mybarber.Services;
 using System;
@@ -47,29 +48,55 @@ namespace Mybarber.Presenter
                 throw new Exception();
             }
         }
-
+    
         public async Task<AgendamentosCompleteResponseDto> PostAgendamentoAsync(AgendamentosRequestDto agendamentoDto)
         {
             try
             {
+                if (agendamentoDto == null)
+                    throw new ViewException("Agendamento.Missing.Info");
+                if (string.IsNullOrEmpty(agendamentoDto.Email))
+                    throw new ViewException("Email.Missing.Info");
+                if (string.IsNullOrEmpty(agendamentoDto.Contato))
+                    throw new ViewException("Contato.Missing.Info");
+                if (string.IsNullOrEmpty(agendamentoDto.Name))
+                    throw new ViewException("Name.Missing.Info");
+                if (agendamentoDto.Horario.Equals(null))
+                    throw new ViewException("Horario.Missing.Info");
+                if (agendamentoDto.BarbeariasId.Equals(null))
+                    throw new ViewException("Barbearia.Missing.Info");
+                if (agendamentoDto.BarbeirosId.Equals(null))
+                    throw new ViewException("Barbeiro.Missing.Info");
+                if (agendamentoDto.ServicosId.Equals(null))
+                    throw new ViewException("Servico.Missing.Info");
+
+
                 var agendamento = _mapper.Map<Agendamentos>(agendamentoDto);
 
                 await _service.PostAgendamentoAsync(agendamento);
 
                 var b = await _service.GetAgendamentoAsyncById(agendamento.IdAgendamento);
 
-
+                if (b == null)
+                    throw new ViewException("Operation.Failed");
 
                 return _mapper.Map<AgendamentosCompleteResponseDto>(b);
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw new Exception();
+                throw new Exception(ex.Message);
             }
         }
 
+        public async Task<bool> DeleteAgendamentoAsyncById(int idAgendamento)
+        {
 
 
+          await  _service.DeleteAgendamentoAsync(idAgendamento);
+
+                return true;
+
+        }
     }
 }

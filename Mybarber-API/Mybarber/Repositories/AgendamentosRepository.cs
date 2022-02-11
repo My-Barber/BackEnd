@@ -23,7 +23,7 @@ namespace Mybarber.Repositories
 
         public async Task<Agendamentos> GetAgendamentosAsyncById(int idAgendamento)
         {
-            IQueryable<Agendamentos> query = _context.Agendamentos;
+            IQueryable<Agendamentos> query = _context.Agendamentos.Include(it=>it.Servicos).Include(it=>it.Barbeiros);
 
             query = query.AsNoTracking()
                 .OrderBy(agendamentos => agendamentos.IdAgendamento)
@@ -46,7 +46,7 @@ namespace Mybarber.Repositories
             IQueryable<Agendamentos> query = _context.Agendamentos.Include(it => it.Servicos).Include(it=>it.Barbeiros);
 
             query = query.AsNoTracking()
-                         .OrderBy(agendamentos => agendamentos.IdAgendamento)
+                         .OrderBy(agendamentos => agendamentos.Horario)
                          .Where(it => it.BarbeariasId == tenant );
 
 
@@ -59,11 +59,13 @@ namespace Mybarber.Repositories
             if ((pageParams.Date.Day.Equals(DateTime.Now.Day)) && (pageParams.Date.Month.Equals(DateTime.Now.Month)) && (pageParams.Date.Year.Equals(DateTime.Now.Year)))
                 query = query.Where
                 (agendamento => (agendamento.Horario.Day.Equals(pageParams.Date.Day) && agendamento.Horario.Month.Equals(pageParams.Date.Month)
-                && agendamento.Horario.Year.Equals(pageParams.Date.Year))
-                || (agendamento.Horario.Day.Equals(pageParams.Date.AddDays(1).Day) && agendamento.Horario.Month.Equals(pageParams.Date.Month)
-                && agendamento.Horario.Year.Equals(pageParams.Date.Year))
-                || (agendamento.Horario.Day.Equals(pageParams.Date.AddDays(2).Day) && agendamento.Horario.Month.Equals(pageParams.Date.Month)
                 && agendamento.Horario.Year.Equals(pageParams.Date.Year)));
+
+
+                //|| (agendamento.Horario.Day.Equals(pageParams.Date.AddDays(1).Day) && agendamento.Horario.Month.Equals(pageParams.Date.Month)
+                //&& agendamento.Horario.Year.Equals(pageParams.Date.Year))
+                //|| (agendamento.Horario.Day.Equals(pageParams.Date.AddDays(2).Day) && agendamento.Horario.Month.Equals(pageParams.Date.Month)
+                //&& agendamento.Horario.Year.Equals(pageParams.Date.Year))); ;
                     
                
           
@@ -77,6 +79,25 @@ namespace Mybarber.Repositories
 
                 return await PageList<Agendamentos>.CreateAsync(query, pageParams.PageNumber, pageParams.PageSize);
         }
+        public async Task<Agendamentos> GetAgendamentosAsyncByHorario(Agendamentos horario)
+        {
+            IQueryable<Agendamentos> query = _context.Agendamentos;
+
+            query = query.AsNoTracking()
+                        .OrderBy(a => a.IdAgendamento)
+                        .Where(agendamentos => (agendamentos.Horario.Day.Equals(horario.Horario.Day))
+                        && (agendamentos.Horario.Month.Equals(horario.Horario.Month))
+                        && (agendamentos.Horario.Year.Equals(horario.Horario.Year))
+                        && (agendamentos.Horario.Hour.Equals(horario.Horario.Hour))
+                        && (agendamentos.Horario.Minute.Equals(horario.Horario.Minute))
+                        && (agendamentos.BarbeirosId.Equals(horario.BarbeirosId)));
+                       
+
+
+             return await query.FirstOrDefaultAsync();
+
+        }
+
 
     }
 }

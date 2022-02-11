@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Mybarber.Exceptions;
+using System;
 
 namespace Mybarber.Validations
 {
@@ -10,7 +11,15 @@ namespace Mybarber.Validations
         }
         public static string SemFormatacao(string Codigo)
         {
-            return Codigo.Replace(".", string.Empty).Replace("-", string.Empty).Replace("/", string.Empty);
+            try
+            {
+                if (string.IsNullOrEmpty(Codigo))
+                    throw  new ViewException("CNPJ.Missing.Info");
+                return Codigo.Replace(".", string.Empty).Replace("-", string.Empty).Replace("/", string.Empty);
+            }catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
     }

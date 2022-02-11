@@ -9,5 +9,6 @@ namespace Mybarber.Services
         Task<IEnumerable<Agendamentos>> GetAllAgendamentosAsync();
         Task<Agendamentos> GetAgendamentoAsyncById(int idAgendamento);
         Task<Agendamentos> PostAgendamentoAsync(Agendamentos agendamentos);
+        Task<bool> DeleteAgendamentoAsync(int idAgendamento);
     }
 }

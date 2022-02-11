@@ -1,4 +1,6 @@
-﻿using Mybarber.Models;
+﻿using Microsoft.AspNetCore.Identity;
+using Mybarber.Exceptions;
+using Mybarber.Models;
 using Mybarber.Repository;
 
 using System;
@@ -76,7 +78,7 @@ namespace Mybarber.Services
 
                 if (await _generally.SaveChangesAsync())
                 {
-
+                   
                     return barbeiros;
                 }
                 else
@@ -84,9 +86,9 @@ namespace Mybarber.Services
                     throw new InvalidOperationException("Operação falhou");
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw new Exception();
+                throw new Exception(ex.Message);
             }
         }
         public async Task<string> DeleteBarbeiroAsyncById(int idBarbeiro)
@@ -95,7 +97,10 @@ namespace Mybarber.Services
             {
                 var barbeiroFinded = await _repo.GetBarbeirosAsyncById(idBarbeiro);
 
-                if (barbeiroFinded == null) { throw new Exception(); }
+                
+
+
+                if (barbeiroFinded == null) { throw new ViewException("Barbeiro.Not.Found"); }
 
 
                 _generally.Delete(barbeiroFinded);
@@ -107,14 +112,40 @@ namespace Mybarber.Services
                 }
                 else
                 {
-                    throw new InvalidOperationException("Operação falhou");
+                    throw new ViewException("Operation.Failed");
                 }
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception( ex.Message);
 
             }
+        }
+        public async Task<bool> UpdateBarbeiroAsyncById(int idBarbeiro)
+        {
+
+            try
+            {
+                var barbeiroFinded = await _repo.GetBarbeirosAsyncById(idBarbeiro);
+
+                if (barbeiroFinded == null) throw new ViewException("Barbeiro.Not.Found");
+
+                _generally.Update(barbeiroFinded);
+
+                if (await _generally.SaveChangesAsync())
+                {
+                    return true;
+                }
+                else
+                {
+                    throw new ViewException("Operation.Failed");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
         }
     }
 }

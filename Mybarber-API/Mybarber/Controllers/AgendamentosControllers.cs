@@ -1,10 +1,16 @@
-﻿using Microsoft.AspNetCore.Cors;
+﻿
+
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 using Mybarber.DataTransferObject.Agendamento;
 using Mybarber.Helpers;
+using Mybarber.Models;
 using Mybarber.Presenter;
 using Mybarber.Repository;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Mybarber.Controllers
@@ -17,15 +23,19 @@ namespace Mybarber.Controllers
     [EnableCors]
     [ApiController]
     [Route("api/v1/agendamentos")]
+   
     public class AgendamentosControllers : ControllerBase
     {
         private readonly IAgendamentosPresenter _presenter;
+        private readonly IMemoryCache _memoryCache;
+      
         /// <summary>
         /// 
         /// </summary>
         /// <param name="presenter"></param>
-        public AgendamentosControllers(IAgendamentosPresenter presenter, IAgendamentosRepository repo)
+        public AgendamentosControllers(IAgendamentosPresenter presenter, IAgendamentosRepository repo, IMemoryCache memoryCache)
         {
+            this._memoryCache = memoryCache;
             this._presenter = presenter;
             this._repo = repo;
         }
@@ -36,17 +46,15 @@ namespace Mybarber.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllAgendamentosAsync()
         { 
-            try
-            {
+            
                 var result = await _presenter.GetAllAgendamentosAsync();
 
                 return Ok(result);
             }
-            catch (Exception ex)
-            {
-                return BadRequest($"Erro:{ex.Message}");
-            }
-        }
+           
+                
+            
+        
         /// <summary>
         /// 
         /// </summary>
@@ -55,18 +63,12 @@ namespace Mybarber.Controllers
         [HttpGet("{idAgendamento:int}")]
         public async Task<IActionResult> GetAgendamentoAsyncById(int idAgendamento)
         {
-            try
-            {
+          
                 var result = await _presenter.GetAgendamentoAsyncById(idAgendamento);
 
                 return Ok(result);
 
-            }
-            catch (Exception ex)
-            {
-
-                return BadRequest($"Erro:{ex.Message}");
-            }
+           
         }
         /// <summary>
         /// 
@@ -74,40 +76,58 @@ namespace Mybarber.Controllers
         /// <param name="agendamentoDto"></param>
         /// <returns></returns>
         [HttpPost]
+       
         public async Task<IActionResult> PostAgendamentoAsync(AgendamentosRequestDto agendamentoDto)
         {
             try
             {
+                
                 var result = await _presenter.PostAgendamentoAsync(agendamentoDto);
 
                 return Created($"/api/v1/agendamentos/{result.IdAgendamento}", result);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest($"Erro:{ex.Message}");
-            }
+            }catch(Exception ex)
+            { throw new Exception(ex.Message); }
+           
         }
 
 
         private readonly IAgendamentosRepository _repo;
 
-       
+        
         [HttpGet("tenant/{tenant:int}")]
         public async Task<IActionResult> GetAgendamentosAsyncByTenant(int tenant, [FromQuery] PageParams pageParams)
         {
-            try
-            {
-                var result = await _repo.GetAgendamentosAsyncByTenant(tenant, pageParams);
+            var key = tenant.ToString() + pageParams.Date.ToString() + pageParams.NomeBarbeiro + pageParams.PageNumber.ToString() + pageParams.NomeServico + pageParams.PageSize.ToString();
+
+            if (_memoryCache.TryGetValue(key, out List<Agendamentos> listaCache))
+                return Ok(listaCache);
+
+
+            var result = await _repo.GetAgendamentosAsyncByTenant(tenant, pageParams);
+
+            var memoryCacheEntryOptions = new MemoryCacheEntryOptions
+            { 
+                AbsoluteExpirationRelativeToNow= TimeSpan.FromSeconds(180), 
+                SlidingExpiration = TimeSpan.FromSeconds(120)
+            };
+
+              _memoryCache.Set(key, result, memoryCacheEntryOptions);
 
                 Response.AddPagination(result.CurrentPage, result.PageSize, result.TotalCount, result.TotalPages);
                
-
                 return Ok(result);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest($"Erro:{ex.Message}");
-            }
+           
+        }
+        [HttpDelete]
+        public async Task<IActionResult> DeleteAgendamentoById(int idAgendamento)
+        {
+
+
+            await _presenter.DeleteAgendamentoAsyncById(idAgendamento);
+
+            return Ok();
+
+
         }
 
 

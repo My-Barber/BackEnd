@@ -9,9 +9,10 @@ namespace Mybarber.Services
 {
     public static class TokenServices
     {
-
+        //new Claim(ClaimTypes.Role, users.Role.RoleName.ToString())
         public static string GenerateToken(Users users)
         {
+           
             var tokenHandler = new JwtSecurityTokenHandler();
 
             var key = Encoding.ASCII.GetBytes(Settings.Secret);
@@ -21,9 +22,11 @@ namespace Mybarber.Services
                 Subject = new ClaimsIdentity(new Claim[]
                 {
                     new Claim(ClaimTypes.Name, users.Username.ToString()),
-                    new Claim(ClaimTypes.Role, users.Role.ToString())
+
+           
+
                 }),
-                Expires= DateTime.UtcNow.AddHours(5),
+                Expires= DateTime.UtcNow.AddHours(8),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha512Signature)
             };
 

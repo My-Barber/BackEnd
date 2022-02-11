@@ -31,7 +31,7 @@ namespace Mybarber.Repositories
 
         public async Task<Barbeiros> GetBarbeirosAsyncById(int idBarbeiro)
         {
-            IQueryable<Barbeiros> query = _context.Barbeiros.Include(p => p.ServicosBarbeiros);
+            IQueryable<Barbeiros> query = _context.Barbeiros.Include(p => p.ServicosBarbeiros).Include(it=> it.Barbearias);
 
             query = query.AsNoTracking()
                 .OrderBy(barbeiros => barbeiros.IdBarbeiro)
@@ -49,6 +49,16 @@ namespace Mybarber.Repositories
                 .Where(candidates => candidates.BarbeariasId == idBarbearia);
 
             return await query.ToArrayAsync();
+        }
+        public async Task<Barbeiros> GetBarbeirosAsyncByEmail(string email)
+        {
+            IQueryable<Barbeiros> query = _context.Barbeiros;
+
+            query = query.AsNoTracking()
+                .OrderBy(barbeiros => barbeiros.IdBarbeiro)
+                .Where(candidates => candidates.Email == email);
+
+            return await query.FirstOrDefaultAsync();
         }
     }
 }

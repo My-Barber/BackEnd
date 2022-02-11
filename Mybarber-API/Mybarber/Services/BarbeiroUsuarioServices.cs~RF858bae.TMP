@@ -1,0 +1,40 @@
+﻿using Microsoft.AspNetCore.Identity;
+using Mybarber.DataTransferObject.Barbeiro;
+using Mybarber.Models;
+using Mybarber.Services.Interfaces;
+using System.Threading.Tasks;
+
+namespace Mybarber.Services
+{
+    public class BarbeiroUsuarioServices : IBarbeiroUsuarioServices
+    {
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly IUsersServices _usersServices;
+
+        public BarbeiroUsuarioServices(UserManager<IdentityUser> userManager, IUsersServices usersServices)
+        {
+            this._userManager = userManager;
+            this._usersServices = usersServices;
+        }
+
+        public async Task<bool> CreateUsuarioBarbeiro(BarbeirosRequestDto barbeiroDto, Barbeiros barbeiro ) 
+        {
+
+            Users user = new Users(barbeiroDto.NameBarbeiro, barbeiroDto.Email, barbeiroDto.BarbeariasId);
+
+            var usuario = new IdentityUser
+            {
+                UserName = barbeiroDto.NameBarbeiro,
+                Email = barbeiroDto.Email,
+                EmailConfirmed = true
+
+            };
+            var userBarbeiro = await _usersServices.PostUserAsync(user);
+            var identity = await _userManager.CreateAsync(usuario, barbeiroDto.Password);
+
+
+            if 
+        }
+
+    }
+}

@@ -57,12 +57,14 @@ namespace Mybarber.Services
             }
         }
 
+       
+
         public async Task<Barbearias> PostBarbeariaAsync(Barbearias barbearias)
         {
             try
             {
                 if(ValidaCNPJ.IsCnpj(barbearias.CNPJ) == false)
-                    throw new CNPJException(TraslateExceptions.CNPJInválido);
+                    throw new CNPJException(TraslateExceptions.CNPJInvalido);
 
 
                _generally.Add(barbearias);
@@ -79,7 +81,7 @@ namespace Mybarber.Services
             }
             catch (Exception ex)
             {
-                throw new ViewException("Operation.Failed", ex.Message);
+                throw new Exception (ex.Message);
             }
         }
         public async Task<string> DeleteBarbeariaAsyncById(int idBarbearia)

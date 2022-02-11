@@ -22,7 +22,7 @@ namespace Mybarber.Repositories
         {
             try
             {
-                IQueryable<Users> query = _context.Users;
+                IQueryable<Users> query = _context.Users.Include(p => p.UsersRoles).ThenInclude(p => p.Roles).ThenInclude(it=>it.RoleName);
                 query = query.AsNoTracking()
                        .OrderBy(users => users.IdUser)
                        .Where(users => users.Username == username && users.Password == password);
@@ -33,5 +33,44 @@ namespace Mybarber.Repositories
                 throw new Exception();
             }
         }
+
+        public async Task<Users> GetUserAsyncByEmail(string email)
+        {
+            try
+            {
+                IQueryable<Users> query = _context.Users;
+
+                query = query.AsNoTracking()
+                       .OrderBy(users => users.IdUser)
+                       .Where(users => users.Email == email);
+
+                return await query.FirstOrDefaultAsync();
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
+
+        }
+        public async Task<Users> GetUserAsyncById(int id)
+        {
+            try
+            {
+                IQueryable<Users> query = _context.Users;
+
+                query = query.AsNoTracking()
+                       .OrderBy(users => users.IdUser)
+                       .Where(users => users.IdUser == id);
+
+                return await query.FirstOrDefaultAsync();
+            }
+            catch (Exception)
+            {
+                throw new Exception();
+            }
+
+        }
+
+
     }
 }

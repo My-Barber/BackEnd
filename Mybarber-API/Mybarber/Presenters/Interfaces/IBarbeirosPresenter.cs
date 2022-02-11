@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+
 namespace Mybarber.Presenter
 {
     public interface IBarbeirosPresenter
@@ -15,6 +16,7 @@ namespace Mybarber.Presenter
         Task<BarbeirosCompleteResponseDto> PostBarbeiroAsync(BarbeirosRequestDto barbeiroDto);
 
         Task<string> DeleteBarbeiroAsyncById(int idBarbeiro);
+       
 
     }
 }

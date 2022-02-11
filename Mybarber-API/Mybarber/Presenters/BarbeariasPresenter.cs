@@ -59,8 +59,7 @@ namespace Mybarber.Presenter
 
         public async Task<BarbeariasCompleteResponseDto> PostBarbeariaAsync(BarbeariasRequestDto barbeariaDto)
         {
-            try
-            {
+            try { 
                 if(barbeariaDto == null)
                 {
                     throw new ViewException("barbearia.Missing.Info");
@@ -87,12 +86,12 @@ namespace Mybarber.Presenter
 
 
                 return _mapper.Map<BarbeariasCompleteResponseDto>(b);
-
-            }
-            catch (Exception ex)
+                }catch(Exception ex)
             {
-                throw new ViewException("Operation.Failed", ex.Message);
+                throw new Exception(ex.Message);
             }
+            
+           
         }
 
         public async Task<string> DeleteBarbeariaAsyncById(int idBarbearia)

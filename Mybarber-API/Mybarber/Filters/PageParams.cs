@@ -21,7 +21,7 @@ namespace Mybarber.Helpers
 
         public string NomeServico { get; set; }
 
-        public DateTime Date { get; set; } = DateTime.Today;
+        public DateTime Date { get; set; } = DateTime.Now;
 
         
         

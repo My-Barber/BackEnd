@@ -11,5 +11,6 @@ namespace Mybarber.Services
         Task<IEnumerable<Barbeiros>> GetBarbeiroAsyncByTenant(int idBarbearia);
         Task<Barbeiros> PostBarbeiroAsync(Barbeiros barbeiros);
         Task<string> DeleteBarbeiroAsyncById(int idBarbeiro);
+        Task<bool> UpdateBarbeiroAsyncById(int idBarbeiro);
     }
 }

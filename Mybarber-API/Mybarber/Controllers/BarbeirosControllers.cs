@@ -5,6 +5,7 @@ using Mybarber.Presenter;
 using System;
 using System.Threading.Tasks;
 
+
 namespace Mybarber.Controllers
 {/// <summary>
 /// 
@@ -94,16 +95,12 @@ namespace Mybarber.Controllers
         [HttpPost]
         public async Task<IActionResult> PostBarbeiroAsync(BarbeirosRequestDto barbeiroDto)
         {
-            try
-            {
+            
                 var result = await _presenter.PostBarbeiroAsync(barbeiroDto);
 
-                return Created($"/api/v1/candidates/{result.IdBarbeiro}", result);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest($"Erro:{ex.Message}");
-            }
+                return Created($"/api/v1/barbeiros/{result.IdBarbeiro}", result);
+            
+           
         }
         [HttpDelete("{idBarbeiro:int}")]
         public async Task<IActionResult> DeleteBarbeiroAsyncById(int idBarbeiro)
@@ -123,5 +120,7 @@ namespace Mybarber.Controllers
             }
 
         }
+
+        
     }
 }
